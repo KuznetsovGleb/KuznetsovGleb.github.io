@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+    color: #2b2a2a;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+    background-color: aliceblue;
+    /* seashell aliceblue azure */
+}
+
+.container {
+    margin: 0 auto;
+    width: 33%;
+    padding-top: 70px;
+}
+
+header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 40px
+}
+
+h2 {
+    font-size: 30px;
+}
+
+
+.gallery ul li {
+    list-style: none;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+.gallery ul li a {
+    text-decoration: none;
+}
+
+.gallery ul li a:hover {
+    font-weight: bold;
+}
