@@ -11,7 +11,7 @@ $(function() {
         e.preventDefault();
         female.eq(0).removeClass('active femaleButtonWhite')
         $(this).addClass('active maleButtonWhite');
-        $('.banner').addClass('eclipsed');
+        $('.firstPage .banner').addClass('eclipsed');
         $('.malePercent').css('display', 'block');;
         $('.femalePercent').css('display', 'none');;
         nextPage.eq(0).css({ "display": "block", "background-color": "#fcc150" });
@@ -22,7 +22,7 @@ $(function() {
         e.preventDefault();
         male.eq(0).removeClass('active maleButtonWhite')
         $(this).addClass('active femaleButtonWhite');
-        $('.banner').addClass('eclipsed');
+        $('.firstPage .banner').addClass('eclipsed');
         $('.femalePercent').css('display', 'block');;
         $('.malePercent').css('display', 'none');;
         nextPage.eq(0).css("display", "block");
@@ -36,7 +36,7 @@ $(function() {
 
         male.eq(0).removeClass('active maleButtonWhite')
         female.eq(0).removeClass('active femaleButtonWhite')
-        $('.banner').removeClass('eclipsed');
+        $('.firstPage .banner').removeClass('eclipsed');
         $('.malePercent').css('display', 'none');
         $('.femalePercent').css('display', 'none');
         nextPage.eq(0).toggle();
