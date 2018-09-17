@@ -11,7 +11,7 @@ $(function() {
         e.preventDefault();
         female.eq(0).removeClass('active femaleButtonWhite')
         $(this).addClass('active maleButtonWhite');
-        $('#banner').addClass('eclipsed');
+        $('.banner').addClass('eclipsed');
         $('.malePercent').css('display', 'block');;
         $('.femalePercent').css('display', 'none');;
         nextPage.eq(0).css({ "display": "block", "background-color": "#fcc150" });
@@ -22,7 +22,7 @@ $(function() {
         e.preventDefault();
         male.eq(0).removeClass('active maleButtonWhite')
         $(this).addClass('active femaleButtonWhite');
-        $('#banner').addClass('eclipsed');
+        $('.banner').addClass('eclipsed');
         $('.femalePercent').css('display', 'block');;
         $('.malePercent').css('display', 'none');;
         nextPage.eq(0).css("display", "block");
@@ -36,7 +36,7 @@ $(function() {
 
         male.eq(0).removeClass('active maleButtonWhite')
         female.eq(0).removeClass('active femaleButtonWhite')
-        $('#banner').removeClass('eclipsed');
+        $('.banner').removeClass('eclipsed');
         $('.malePercent').css('display', 'none');
         $('.femalePercent').css('display', 'none');
         nextPage.eq(0).toggle();
@@ -83,12 +83,14 @@ $(function() {
     function validateForm() {
         if ((nFlag & eFlag & pFlag) && (male.eq(1).hasClass("activeBlue") || female.eq(1).hasClass("activeBlue")) && (checkbox.prop('checked')) ) {
             nextPage.eq(1).css({ 'color': '#fff', 'background-color': '#1da7c0' });
+            return true;
         } else {
             nextPage.eq(1).css({ 'color': '#aaa9a9', 'background-color': '#fff' });
+            return false;
         };
     }
 
-    $('#name, #email, #password').unbind().blur(function() {
+    $('#name, #email, #password').blur(function() {
 
         var id = $(this).attr('id');
         var val = $(this).val();
@@ -159,6 +161,9 @@ $(function() {
             id.eq(0).attr("placeholder", "Введите свое имя");
             id.eq(1).attr("placeholder", "Неверный формат email");
             id.eq(2).attr("placeholder", "Придумайте новый пароль");
+        } else {
+            $(this).reset();
+
         }
         e.preventDefault();
     });
