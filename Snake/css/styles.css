@@ -79,7 +79,12 @@ html, body {
     height: 20px;
 }
 
-.head {
+.apple {
+    background-color: #ca0202db;
+    border: 1px solid #aece8b;
+    border-radius: 20%;
+}
+.snake {
     background-color: #36371a;
     border: 1px solid #aece8b;
     border-radius: 20%;
