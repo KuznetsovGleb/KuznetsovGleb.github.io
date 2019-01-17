@@ -256,7 +256,7 @@ $(function () {
         },
         newGame: function () {
             this.$gameOver.removeClass('game-over-active');
-            this.$cell.removeClass('snake apple');
+            this.$cell.removeClass('snake apple tail head');
             $(document).unbind('keydown');
             this.$newGame.unbind('click');
             this.delay = 250;
