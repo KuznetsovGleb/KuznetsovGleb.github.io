@@ -25,7 +25,6 @@ var controller = {
             case SPACE_KEYCODE:
             case ENTER_KEYCODE:
                 if (view.isGameOver()) {
-                    model.changeScores();
                     this.clearField();
                 }
                 return false;
@@ -40,7 +39,7 @@ var controller = {
         this.moveSnake(keyCode);
     },
     clearField: function() {
-
+        model.changeScores();
         view.clearField();
         clearTimeout(this.innerTimer);
         this.newGame();
