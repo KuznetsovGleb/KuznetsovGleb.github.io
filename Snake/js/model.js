@@ -1,18 +1,21 @@
     var model = {
 
-        setSnake: function (currentState) {
+        setSnake: function(currentState) {
 
             this.currentState = currentState;
-            this.snakeDirection = 'right';
-            this.defaultKeyCode = 39;
-            this.interval = 250;
+            this.snakeDirection = DEFAULT_DIRECTION;
+            this.defaultKeyCode = DEFAULT_KEYCODE;
+            this.interval = TIME_INTERVAL;
             this.snakePosition = [];
-            for ( currentState; currentState > this.currentState - 4; currentState-- ) {
+            this.currentScore = INITIAL_SCORES;
+            this.bestScore = localStorage.getItem('best-score') || 0;
+
+            for (currentState; currentState > this.currentState - SNAKE_LENGTH; currentState--) {
                 this.snakePosition.push(currentState);
             }
             this.amountOfRepeating = this.snakePosition.length;
         },
-        setApple: function (cellAmount, cell) {
+        setApple: function(cellAmount, cell) {
             var max = cellAmount;
             var min = 0;
 
@@ -22,29 +25,25 @@
 
             this.cellApple = getRandomInt(min, max);
 
-            while ( cell.eq(this.cellApple).hasClass('snake') ) {
+            while (cell.eq(this.cellApple).hasClass(CLASS_SNAKE)) {
                 this.cellApple = getRandomInt(min, max);
             }
         },
-        setDirection: function (keyCode, columns, eatingAppleFlag, cellAmount, cell) {
+        setDirection: function(keyCode, columns, eatingAppleFlag, cellAmount, cell) {
             var direction;
             this.drawingAppleFlag = false;
             switch (keyCode) {
-                case 37:
+                case LEFT_KEYCODE:
                     direction = this.currentState - 1;
-                    // if ( self.isCriticalZone.left(self) ) return false;
                     break;
-                case 38:
+                case UP_KEYCODE:
                     direction = this.currentState - columns;
-                    // if ( self.isCriticalZone.up(self) ) return false;
                     break;
-                case 39:
+                case RIGHT_KEYCODE:
                     direction = this.currentState + 1;
-                    // if ( self.isCriticalZone.right(self) ) return false;
                     break
-                case 40:
+                case DOWN_KEYCODE:
                     direction = this.currentState + columns;
-                    // if ( self.isCriticalZone.down(self) ) return false;
                     break;
             }
             if (this.currentState === this.cellApple) this.growUp(cellAmount, cell);
@@ -63,29 +62,35 @@
             this.snakePosition.unshift(direction);
             this.currentState = direction;
         },
-        growUp: function (cellAmount, cell) {
+        growUp: function(cellAmount, cell) {
             this.eatingAppleFlag = true;
+            this.currentScore++;
             this.setApple(cellAmount, cell);
             this.drawingAppleFlag = true;
         },
-        changeDirection: function (keyCode) {
+        changeDirection: function(keyCode) {
             switch (keyCode) {
-                case 37:
-                    if (this.snakeDirection === 'left' || this.snakeDirection === 'right') return false;
-                    this.snakeDirection = 'left';
+                case LEFT_KEYCODE:
+                    if (this.snakeDirection === LEFT_DIRECTION || this.snakeDirection === RIGHT_DIRECTION) return false;
+                    this.snakeDirection = LEFT_DIRECTION;
                     return true;
-                case 38:
-                    if (this.snakeDirection === 'up' || this.snakeDirection === 'down') return false;
-                    this.snakeDirection = 'up';
+                case UP_KEYCODE:
+                    if (this.snakeDirection === UP_DIRECTION || this.snakeDirection === DOWN_DIRECTION) return false;
+                    this.snakeDirection = UP_DIRECTION;
                     return true;
-                case 39:
-                    if (this.snakeDirection === 'right' || this.snakeDirection === 'left') return false;
-                    this.snakeDirection = 'right';
+                case RIGHT_KEYCODE:
+                    if (this.snakeDirection === RIGHT_DIRECTION || this.snakeDirection === LEFT_DIRECTION) return false;
+                    this.snakeDirection = RIGHT_DIRECTION;
                     return true;
-                case 40:
-                    if (this.snakeDirection === 'down' || this.snakeDirection === 'up') return false;
-                    this.snakeDirection = 'down';
+                case DOWN_KEYCODE:
+                    if (this.snakeDirection === DOWN_DIRECTION || this.snakeDirection === UP_DIRECTION) return false;
+                    this.snakeDirection = DOWN_DIRECTION;
                     return true;
+            }
+        },
+        changeScores: function() {
+            if (this.currentScore > this.bestScore) {
+                localStorage.setItem('best-score', this.currentScore)
             }
         }
     };

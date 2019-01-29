@@ -3,8 +3,26 @@
     src: url('../fonts/8-bit.otf');
 }
 
-
-html, body, div, p, h1, header, footer, main, nav, ul, ol, li, a, img, input, select, option, button, form, span {
+html,
+body,
+div,
+p,
+h1,
+header,
+footer,
+main,
+nav,
+ul,
+ol,
+li,
+a,
+img,
+input,
+select,
+option,
+button,
+form,
+span {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
@@ -12,11 +30,13 @@ html, body, div, p, h1, header, footer, main, nav, ul, ol, li, a, img, input, se
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     font-family: '8-bit', sans-serif;
     background-color: #8eb367;
 }
+
 .clearfix:after {
     content: '';
     display: block;
@@ -32,7 +52,6 @@ html, body {
     max-height: 100%;
     height: 100vh;
 }
-
 
 .header {
     display: flex;
@@ -53,6 +72,7 @@ html, body {
     color: #36381b;
     overflow: hidden;
 }
+
 #field {
     /*width: 70%;*/
     /*height: 70%;*/
@@ -64,14 +84,35 @@ html, body {
     display: flex;
     flex-wrap: wrap;
 }
+
 .info {
     width: 606px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 1%;
 }
-.score-wrapper {
+
+.current-score-wrapper {
     margin-left: 2%;
+    font-size: 0;
+}
+
+.best-score-wrapper {
+    padding-right: 2%;
+    font-size: 0;
+}
+
+.current-score-text,
+.best-score-text {
+    font-size: 16px;
+}
+
+#current-score,
+#best-score {
+    min-width: 35px;
+    text-align: right;
+    display: inline-block;
+    font-size: 16px;
 }
 
 .cell {
@@ -84,6 +125,7 @@ html, body {
     border: 1px solid #aece8b;
     border-radius: 20%;
 }
+
 .snake {
     background-color: #36371a;
     border: 1px solid #aece8b;
@@ -99,19 +141,23 @@ html, body {
     background-color: #8eb367;
     text-align: center;
 }
+
 .game-over-active {
     display: block;
 }
+
 .game-over-text {
     display: block;
     font-size: 50px;
     margin-bottom: 10%;
 }
+
 .new-game {
     display: block;
     font-size: 40px;
     cursor: pointer;
 }
+
 .new-game:hover {
     color: #cdd078;
 }
