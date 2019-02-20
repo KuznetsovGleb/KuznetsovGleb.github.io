@@ -24,7 +24,6 @@ html, body {
     min-width: 250px;
     max-width: 250px;
     border-radius: 6px;
-    /*overflow: auto;*/
     -webkit-box-shadow: -4px 5px 20px -11px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 5px 20px -11px rgba(0,0,0,0.75);
     box-shadow: -4px 5px 20px -11px rgba(0,0,0,0.75);
@@ -43,22 +42,44 @@ html, body {
     background-position: left center, right center;
     background-size: contain;
 }
+.block-header-minimize {
+    min-height: 24px;
+    background-image: linear-gradient(to right, RGB(39, 134, 151), RGB(39, 134, 151)), url("../images/bg-header-minimize.png");
+    background-size: 228px, contain;
+    background-position: left center, right center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
 
 .collapse-icon {
     position: absolute;
     right: 1px;
     top: 1px;
     cursor: pointer;
-    animation: iconRotation 2s linear infinite;
 }
 
-@keyframes iconRotation {
+.counterclock-wise {
+    animation: counterclock-wise 600ms linear;
+    animation-fill-mode: forwards;
+}
+.clockwise {
+    animation: clockwise 600ms linear;
+    animation-fill-mode: forwards;
+}
+@keyframes clockwise {
     from {
         transform: rotate(0);
-
     }
     to {
-        transform: rotate(360deg);
+        transform: rotate(0.5turn);
+    }
+}
+@keyframes counterclock-wise {
+    from {
+        transform: rotate(0.5turn);
+    }
+    to {
+        transform: rotate(0);
     }
 }
 
@@ -66,6 +87,10 @@ html, body {
     font-size: 14px;
     letter-spacing: 0.2px;
     color: #ffffff;
+}
+.block-header-text-minimize {
+    font-size: 12px;
+    font-weight: 300;
 }
 
 .block-user-views {
@@ -83,9 +108,6 @@ html, body {
     font-size: 12px;
     color: #323232;
 }
-/*.block-user-views:hover .popup-advice {*/
-    /*display: block;*/
-/*}*/
 
 .popup-advice {
     display: none;
@@ -167,14 +189,32 @@ html, body {
     color: #323232;
 }
 
-
-
+.activities-sent::after {
+    content: 'Отправлено другим пользователем';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    text-align: center;
+    font-size: 12px;
+    color: #53ce8a;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+}
 .activities-list {
     list-style: none;
+    overflow: hidden;
+    min-height: 60px;
 }
 .activities-list-item {
     border-bottom: 1px solid #9696961a;
     position: relative;
+    cursor: pointer;
 }
 .activities-greeting {
     padding: 12px 0 11px 20px;
@@ -183,7 +223,6 @@ html, body {
 }
 .activities-surprise {
     padding: 15px 0 11px 68px;
-    /*background: url("../images/wink.png") no-repeat left center;*/
     /*background-size: 20%;*/
     background-color: #d9f3f780;
 
@@ -201,7 +240,6 @@ html, body {
     position: absolute;
     left: 10px;
     top: 8px;
-    /*background: url("../images/wink.png") no-repeat center center;*/
     /*background-size: contain;*/
 }
 
@@ -226,7 +264,7 @@ html, body {
 }
 .activities-list-item-text {
     display: block;
-    width: 85%;
+    width: 86%;
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 0.2px;
@@ -307,19 +345,20 @@ html, body {
 }
 
 .non-active {
-    /*display: none;*/
-    height: auto;
-    overflow: hidden;
-    animation: hiding 1s ease-in-out;
-    animation-fill-mode: forwards;
+    display: none;
+    /*height: auto;*/
+    /*overflow: hidden;*/
+    /*animation: hiding 1s ease-in-out;*/
+    /*animation-fill-mode: forwards;*/
 }
 
-@keyframes hiding {
-    from {
-        height: 303px;
-    }
-    to {
-        height: 0px;
-        /*display: none;*/
-    }
-}
+
+/*@keyframes hiding {*/
+    /*from {*/
+        /*height: 303px;*/
+    /*}*/
+    /*to {*/
+        /*height: 0px;*/
+        /*!*display: none;*!*/
+    /*}*/
+/*}*/
