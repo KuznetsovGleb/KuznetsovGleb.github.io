@@ -1,7 +1,11 @@
 // Core
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { HotModuleReplacementPlugin } = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { resolve } = require('path');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+
+// CONSTANTS
+const { PROJECT_ROOT, SOURCE, BUILD, STATIC } = require('../constants');
 
 /**
  * object
@@ -15,9 +19,9 @@ let pathsToClean = [
 
 // the clean options to use
 let cleanOptions = {
-    // root: './build/',
+    root: PROJECT_ROOT,
     // exclude: ['shared.js'],
-    // verbose: true,
+    verbose: true,
     // dry: false
 }
 
@@ -25,16 +29,25 @@ module.exports = () => {
     return {
         mode: 'none',
         devtool: false,
+        entry: [SOURCE, 'webpack-hot-middleware/client?reload=true&quiet=true'],
         output: {
-            path: resolve(__dirname, './build'),
+            path: BUILD,
             filename: 'bundle.js',
+        },
+        module: {
+            rules: [{
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            }]
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './static/template.html',
+                template: `${STATIC}/template.html`,
                 title: 'Учим вебпак! 💪🏼🌟🔫',
             }),
             new CleanWebpackPlugin(pathsToClean, cleanOptions),
+            new HotModuleReplacementPlugin(),
+            new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
         ],
     };
 };
