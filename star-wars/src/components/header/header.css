@@ -1,0 +1,40 @@
+.header {
+  margin-top: .5rem;
+  padding-left: 10px;
+  display: flex;
+}
+
+.header-list-item {
+  list-style: none;
+  margin: 0;
+  padding: .5rem 1rem;
+  border-radius: 3px;
+}
+
+.header-list-item:hover {
+  background-color: #444;
+}
+.header-link {
+  color: #00bc8c;
+  text-decoration: none;
+}
+.header-link:hover {
+  color: #007053;
+  text-decoration: none;
+}
+
+.header-title {
+  color: white;
+  text-decoration: none;
+}
+
+.header-title:hover {
+  color: #00bc8c;
+  text-decoration: none;
+}
+
+.header-list {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: flex;
+}
